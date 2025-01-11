@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
+
+import { getDatabase, ref, get, onValue } from 'firebase/database';
+import Col from 'react-bootstrap/Col';
+import user from './../src/assets/profileavatar.png'
+import './../src/css/Officials.css'
+
+
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
 
 const DashboardAdmin = () => {
   const [error, setError] = useState(null);
   const [officials, setOfficials] = useState([]); 
   const [posts, setPosts] = useState([]); 
   const db = getDatabase();
+  const navigate = useNavigate();
+
 
   const fetchPosts = () => {
     const postRef = ref(db, 'UserPosts/');
-    
     // Using onValue to listen to changes in the "UserPosts" node
     const unsubscribePosts = onValue(postRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -28,19 +37,24 @@ const DashboardAdmin = () => {
   const fetchOfficials = () => {
     const officialsRef = ref(db, 'officials/');
     
-    // Using onValue to listen to changes in the "officials" node
     const unsubscribeOfficials = onValue(officialsRef, (snapshot) => {
       if (snapshot.exists()) {
-        const officialsData = Object.values(snapshot.val());
+        const officialsData = [];
+        snapshot.forEach(childSnapshot => {
+          const data = childSnapshot.val();
+          officialsData.push({ id: childSnapshot.key, ...data });
+        });
         setOfficials(officialsData); // Update officials with the latest data
       } else {
         setError('No officials found.');
       }
     });
-
-    // Cleanup the listener when the component unmounts
-    return () => unsubscribeOfficials();
+  
+    // Return the unsubscribe function to be called in the cleanup
+    return unsubscribeOfficials;
   };
+  
+  
 
   useEffect(() => {
     // Start listening for updates on posts and officials
@@ -53,6 +67,68 @@ const DashboardAdmin = () => {
       cleanupOfficials();
     };
   }, []);
+
+  const handleOfficialClick = (id) => {
+    navigate(`/official/${id}`);
+  };
+
+  return (
+    <div className='dashboard container-fluid'>
+      <Col className='header-container'>
+          <h1>List of Officials</h1>
+      </Col> 
+
+      {error && <p>{error}</p>}
+
+      {/* Render officials data */}
+      <div>
+        <div className='officials-grid'>
+          {officials.length > 0 ? (
+            officials.map((official, index) => (
+              <div className='officials-box' key={official.id}
+              onClick={() => handleOfficialClick(official.id)}
+              >
+                <img src={user} className='official-avatar '></img>
+                <p className='official-name'>{official.Name}</p>
+                <p className='official-position'>{official.Position}</p>
+                {/* Count the posts for the specific official */}
+                { console.log("Logging USERID", official.id)}
+                <div className='counts-container'>
+                  <div>
+                    <p className='total-count-text'>
+                      {
+                        posts.filter(post => post.officialConcern === official.Name && post.status === 'report').length
+                      }
+                    </p>
+                    <p className='reported-title'>
+                    Reported
+                    </p>
+                  </div>
+                  <div>
+                    <p className='total-count-text'>
+                      {
+                        posts.filter(post => post.officialConcern === official.Name && post.status === 'commend').length
+                      }
+                    </p>
+                    <p className='commended-title'>
+                    Commended
+                    </p>
+                  </div>
+                  
+                </div>
+                
+              </div>
+            ))
+          ) : (
+            <p>Loading officials...</p>
+          )}
+        </div>
+        
+      </div>
+
+      {/* Render posts data */}
+      {/* <div>
+        <h2>Posts</h2>
 
   // Bar chart data for posts
   const reportPostsCount = posts.filter(post => post.status === 'report').length;
@@ -96,6 +172,7 @@ const DashboardAdmin = () => {
 
       <div className="section">
         <h2 className="section-title">Posts Overview</h2>
+
         {posts.length > 0 ? (
           <>
             <ResponsiveContainer width="100%" height={300}>
@@ -114,7 +191,7 @@ const DashboardAdmin = () => {
         ) : (
           <p>Loading posts...</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

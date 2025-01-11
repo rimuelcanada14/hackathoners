@@ -9,14 +9,16 @@ import LoginPage from './Pages/LoginPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
+import AdminDashboard from './Pages/Officials.jsx'
 import Creation from '../admin/MainCrud.jsx'
-import AdminDashboard from '../admin/dashboard.jsx'
+import OfficialDetail from './Pages/OfficialsInfo.jsx'
 
 import PostPage from './Components/PostPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
+
       <Route path="/" element={<LoginPage />} />
       <Route path="/homepage" element={
           <HomePage />
@@ -26,8 +28,8 @@ createRoot(document.getElementById('root')).render(
 
         <Route path="/creation" element={< Creation />} />
         <Route path="/postpage" element={< PostPage />} />
-        <Route path="/admindashboard" element={< AdminDashboard />} />
-
+        <Route path="/officials" element={< AdminDashboard />} />
+        <Route path="/official/:id" element={<OfficialDetail />} />
       </Routes>
     </Router>
   </StrictMode>,

@@ -16,8 +16,9 @@
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.09);
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     z-index: 1;
 }
@@ -48,13 +49,14 @@
     width: 95%; 
     font-family: Poppins;
     border-radius: 10px;
+    background-color: #ffffff;
     border: 0.5px solid #ADADAD;
   }
   
 .login-form button {
     padding: 10px 20px;
     border-radius: 10px;
-    background: #FDBC39;
+    background-color: #FDBC39;
     color: white;
     border: none;
     cursor: pointer;
