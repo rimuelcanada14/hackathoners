@@ -1,8 +1,8 @@
 import React from 'react'
-
+import {auth,db} from '../Firebase'
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <div></div>
   )
 }
 
