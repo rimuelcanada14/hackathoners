@@ -8,8 +8,8 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink, useNavigate } from 'react-router-dom';
-import userImage from './../assets/profileavatar.png';
-import kuraplogo from './../assets/kurap.png';
+import userImage from '../src/assets/profileavatar.png';
+import kuraplogo from '../src/assets/kurap.png';
 import { CAvatar } from '@coreui/react'
 
 
@@ -17,7 +17,6 @@ import { CAvatar } from '@coreui/react'
 import { Image } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 
-import './Navbar.css';
 
 const Navbar = () => {
   const [profilePic, setProfilePic] = useState('');
@@ -52,6 +51,14 @@ const Navbar = () => {
           <CDBSidebarMenu>
             <NavLink exact to="" className="activeClicked">
                 <CDBSidebarMenuItem icon="user">Officials</CDBSidebarMenuItem>
+            </NavLink>
+           
+          </CDBSidebarMenu>
+        </CDBSidebarContent>
+        <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            <NavLink exact to="" className="activeClicked">
+                <CDBSidebarMenuItem icon="user">Repor</CDBSidebarMenuItem>
             </NavLink>
            
           </CDBSidebarMenu>
