@@ -9,6 +9,7 @@ import {
 } from 'cdbreact';
 import { NavLink, useNavigate } from 'react-router-dom';
 import userImage from './../assets/profileavatar.png';
+import kuraplogo from './../assets/kurap.png';
 import { CAvatar } from '@coreui/react'
 
 
@@ -27,8 +28,8 @@ const Navbar = () => {
         <div className='custom-header'>
           <CDBSidebarHeader prefix={<i className="iconbar-custom fa fa-bars fa-large"></i>}>
               <a href="/" className="header-logo text-decoration-none">
-                  {/* <Image className="logoimg" src={Logo} /> */}
-                  <h1>KURAP</h1>
+                  <Image className="logoimg" src={kuraplogo} />
+                  
               </a>
           </CDBSidebarHeader>
         </div>
@@ -49,10 +50,10 @@ const Navbar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/dashboard" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
-                <CDBSidebarMenuItem icon="chart-line">Officials</CDBSidebarMenuItem>
+            <NavLink exact to="/officials" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
+                <CDBSidebarMenuItem icon="user">Officials</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/hazard" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
+            <NavLink exact to="/report" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
                 <CDBSidebarMenuItem icon="exclamation-triangle">Report</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

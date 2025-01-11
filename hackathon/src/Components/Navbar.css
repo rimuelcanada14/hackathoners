@@ -30,15 +30,12 @@
 
 
 .head-text .logoimg{
-    width: 50px !important;
-    height: 50px !important;
+    width: 150px !important;
+    height: auto !important;
     margin-right: 10px !important;
-}
-
-.header-logo{
-    display: flex !important;
-    align-items: center !important;
-    margin-right: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .custom-header .head-div .head-text a h1{
