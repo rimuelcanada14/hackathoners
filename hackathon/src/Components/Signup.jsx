@@ -57,7 +57,6 @@ const Signup = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
               required
             />
             <label>Tag Name: </label>
@@ -65,7 +64,6 @@ const Signup = () => {
               type="text"
               value={tagName}
               onChange={(e) => setTagName(e.target.value)}
-              placeholder="Tag Name"
               required
             />
             <label>Password: </label>
@@ -73,7 +71,6 @@ const Signup = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
               required
             />
             {message && <p className = "signup-error">{message}</p>}
@@ -84,7 +81,7 @@ const Signup = () => {
           </form>
         </div>
           <div className="signup-login">
-            Already have an account? <Link to="/login" className='signup-log'>Login</Link>
+            <p className = "subtext">Already have an account? <Link to="/login" className='signup-log'>Login</Link></p>
           </div>
         </div>
       </div>

@@ -30,21 +30,23 @@ const Login = () => {
     </div>
     <div className="container-fluid login-container">
       <div className="login-content">
-        <h1 className="fw-bold fs-1 login-title">&nbsp;&nbsp;&nbsp;KURAPP&nbsp;&nbsp;&nbsp;</h1>
+        <div className="login-logo">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/logo.png" alt="Background" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
         <div className = "login-form">
           {message && <p>{message}</p>}
             <form onSubmit={handleLogin}>
               <label>Email: </label>
-              <input id="email" type="email" value={email} placeholder='Email' onChange={(e) =>setEmail(e.target.value)} />
+              <input id="email" type="email" value={email} onChange={(e) =>setEmail(e.target.value)} />
               <label>Password: </label>
-              <input id="password" type="password" value={password} placeholder='Password' onChange={(e) =>setPassword(e.target.value)} />
+              <input id="password" type="password" value={password} onChange={(e) =>setPassword(e.target.value)} />
               <div className="login-submit">
                 <button type='submit'>LOGIN</button>
               </div>
             </form>
         </div>
         <div className="login-register">
-          Don't have an account? <Link to="/signup" className='login-reg'>Register</Link>
+          <p className = "subtext">Don't have an account? <Link to="/signup" className='login-reg'>Register</Link></p>
         </div>
       </div>
     </div>

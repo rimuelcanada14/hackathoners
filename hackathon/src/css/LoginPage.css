@@ -39,7 +39,7 @@
 .login-form label {
     margin-bottom: 5px;
     display: block;
-    color: #FDBC39;
+    color: #ADADAD;
   }
   
 .login-form input {
@@ -48,7 +48,7 @@
     width: 95%; 
     font-family: Poppins;
     border-radius: 10px;
-    border: 0.5px solid #91A6B5;
+    border: 0.5px solid #ADADAD;
   }
   
 .login-form button {
@@ -84,4 +84,7 @@
 }
 .login-reg:hover{
     color: #c88500;
+}
+.subtext {
+    color: #ADADAD;
 }
