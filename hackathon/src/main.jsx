@@ -11,6 +11,7 @@ import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
 import Creation from '../admin/MainCrud.jsx'
 import AdminDashboard from '../admin/dashboard.jsx'
+import ProfileOfficer from '../admin/ProfileOfficial.jsx'; // Path to your ProfileOfficer component
 
 import PostPage from './Components/PostPage.jsx'
 createRoot(document.getElementById('root')).render(
@@ -26,7 +27,9 @@ createRoot(document.getElementById('root')).render(
 
         <Route path="/creation" element={< Creation />} />
         <Route path="/postpage" element={< PostPage />} />
-        <Route path="/admindashboard" element={< AdminDashboard />} />
+        <Route path="/admindashboard/" element={< AdminDashboard />} />
+        <Route path="/profileofficer/:officialName" element={<ProfileOfficer />} />
+
 
       </Routes>
     </Router>
