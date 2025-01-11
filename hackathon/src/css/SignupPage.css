@@ -99,3 +99,8 @@
     color: red;
     margin-top: -.5em;
 }
+.signup-success {
+    text-align: center;
+    color: green;
+    margin-top: -.5em;
+}
