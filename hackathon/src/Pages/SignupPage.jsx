@@ -5,10 +5,8 @@ const SignupPage = () => {
   return (
     <>
      <div>
-        <Navbar />
         <Signup />
      </div>
-    )
     </>
   )
 }
