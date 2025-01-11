@@ -60,7 +60,7 @@ const Navbar = () => {
         <CDBSidebarFooter className='sidebar-content-footer'>
           <div className='sidebar-footer'>
               <div className="divider"></div> 
-              <NavLink exact to="/logout" activeClassName="activeClicked">
+              <NavLink exact to="/" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="door-open" className='custom-footer'>Logout</CDBSidebarMenuItem>
               </NavLink>
           </div>
