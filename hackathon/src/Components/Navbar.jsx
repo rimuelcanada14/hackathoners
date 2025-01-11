@@ -50,12 +50,10 @@ const Navbar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/officials" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
+            <NavLink exact to="" className="activeClicked">
                 <CDBSidebarMenuItem icon="user">Officials</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/report" className={({ isActive }) => (isActive ? "activeClicked" : "")}>
-                <CDBSidebarMenuItem icon="exclamation-triangle">Report</CDBSidebarMenuItem>
-            </NavLink>
+           
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
