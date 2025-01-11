@@ -11,7 +11,7 @@ const Edit = ({item, onCancel}) => {
         e.preventDefault();
 
         try {
-            const Ref = ref(db, 'officials');
+            const Ref = ref(db, `officials/${item.id}`);
             await update(Ref, {Name, Position});
             console.log("Info Successfully Updated");
             onCancel();
