@@ -7,6 +7,8 @@ import HomePage from './Pages/HomePage.jsx'
 import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
 import Creation from '../admin/MainCrud.jsx'
+import AdminDashboard from '../admin/dashboard.jsx'
+
 import PostPage from './Components/PostPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/creation" element={< Creation />} />
         <Route path="/postpage" element={< PostPage />} />
+        <Route path="/admindashboard" element={< AdminDashboard />} />
 
       </Routes>
     </Router>
