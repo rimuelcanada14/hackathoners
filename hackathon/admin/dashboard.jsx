@@ -7,22 +7,23 @@ import user from './../src/assets/profileavatar.png'
 import './../src/css/Officials.css'
 
 
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+
 const DashboardAdmin = () => {
   const [error, setError] = useState(null);
-  const [officials, setOfficials] = useState([]); // Initialize with an empty array
-  const [posts, setPosts] = useState([]); // Initialize with an empty array (instead of null)
+  const [officials, setOfficials] = useState([]); 
+  const [posts, setPosts] = useState([]); 
   const db = getDatabase();
   const navigate = useNavigate();
 
 
-  // Fetch and listen to posts in real-time
   const fetchPosts = () => {
     const postRef = ref(db, 'UserPosts/');
     // Using onValue to listen to changes in the "UserPosts" node
     const unsubscribePosts = onValue(postRef, (snapshot) => {
       if (snapshot.exists()) {
         setPosts(Object.values(snapshot.val())); // Update posts with the latest data
-        console.log(snapshot.val());
       } else {
         setError('No posts found.');
       }
@@ -44,7 +45,6 @@ const DashboardAdmin = () => {
           officialsData.push({ id: childSnapshot.key, ...data });
         });
         setOfficials(officialsData); // Update officials with the latest data
-        console.log(officialsData);
       } else {
         setError('No officials found.');
       }
@@ -129,10 +129,64 @@ const DashboardAdmin = () => {
       {/* Render posts data */}
       {/* <div>
         <h2>Posts</h2>
+
+  // Bar chart data for posts
+  const reportPostsCount = posts.filter(post => post.status === 'report').length;
+  const commendPostsCount = posts.filter(post => post.status === 'commend').length;
+  const barData = [
+    { name: 'Report Posts', count: reportPostsCount },
+    { name: 'Commend Posts', count: commendPostsCount },
+  ];
+
+  // Bar chart data for officials and post counts
+  const officialPostCounts = officials.map((official) => {
+    const reportCount = posts.filter(post => post.officialConcern === official.Name && post.status === 'report').length;
+    const commendCount = posts.filter(post => post.officialConcern === official.Name && post.status === 'commend').length;
+    return { name: official.Name, report: reportCount, commend: commendCount };
+  });
+
+  return (
+    <div className="dashboard">
+      <h1 className="title">Dashboard Admin</h1>
+
+      {error && <p className="error-message">{error}</p>}
+
+      <div className="section">
+        <h2 className="section-title">Officials</h2>
+        {officials.length > 0 ? (
+          <ResponsiveContainer width="100%" height={400}>
+            <BarChart data={officialPostCounts}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="report" fill="#8884d8" />
+              <Bar dataKey="commend" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        ) : (
+          <p>Loading officials...</p>
+        )}
+      </div>
+
+      <div className="section">
+        <h2 className="section-title">Posts Overview</h2>
+
         {posts.length > 0 ? (
           <>
-            <p>Number of "Report" posts: {posts.filter(post => post.status === 'report').length}</p>
-            <p>Number of "Commend" posts: {posts.filter(post => post.status === 'commend').length}</p>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={barData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart>
+            </ResponsiveContainer>
+            <p><strong>Total "Report" Posts:</strong> {reportPostsCount}</p>
+            <p><strong>Total "Commend" Posts:</strong> {commendPostsCount}</p>
           </>
         ) : (
           <p>Loading posts...</p>

@@ -23,6 +23,7 @@ const Signup = () => {
 
         await set(ref(db, 'Users/' + user.uid), {
           email: user.email,
+          typeOf:"user",
           createdAt: currentTimeStamp,
         });
 
@@ -81,7 +82,7 @@ const Signup = () => {
           </form>
         </div>
           <div className="signup-login">
-            <p className = "subtext">Already have an account? <Link to="/login" className='signup-log'>Login</Link></p>
+            <p className = "subtext">Already have an account? <Link to="/" className='signup-log'>Login</Link></p>
           </div>
         </div>
       </div>
