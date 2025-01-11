@@ -47,9 +47,9 @@ const Signup = () => {
         <img src="./img/waves.png" alt="Background" />
       </div>
 
-      <div className="container-fluid signup-container">
+      <div className="container-fluid signup-container px-10">
         <div className="signup-content">
-          <h1 className="fw-bold fs-1 signup-title">&nbsp;&nbsp;&nbsp;REGISTER&nbsp;&nbsp;&nbsp;</h1>
+          <h1 className="fw-bold signup-title">&nbsp;&nbsp;&nbsp;REGISTER&nbsp;&nbsp;&nbsp;</h1>
           <div className = "signup-form">
           <form onSubmit={handleSignup}>
           <label>Email: </label>
