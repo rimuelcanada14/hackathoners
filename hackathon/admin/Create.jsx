@@ -1,12 +1,17 @@
 import React from 'react'
 import {db} from '../src/Firebase'
 import {useState, useEffect} from 'react'
-import {ref, push} from 'firebase/database'
+import {ref, push, onValue} from 'firebase/database'
 
-const OfficialCreation = () => {
+
+const Create = () => {
+
 const [Name, setName] = useState("");
 const [Position, setPosition] = useState("");
-const [Image, setImage] = useState(null);
+const [editingItem, setEditingItem] = useState(null);
+
+const handleEdit = (item) => setEditingItem(item);
+const handleCancelEdit = () => setEditingItem(null);
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,12 +27,7 @@ const handleSubmit = async (e) => {
     }
 };
 
-// useEffect(() => {
-//     db.ref('/officials').on('value', (snapshot) => {
-
-//     })
-// })
-
+   
 
   return (
     <>
@@ -49,19 +49,13 @@ const handleSubmit = async (e) => {
                 required
             />
 
-            {/* <input type='file'  /> */}
-
             <button type='submit'>Submit</button>
         </form>
             
         
     </div>
 
-    <div>
-        <h2>Registered Officials</h2>
 
-
-    </div>
     </>
     
     
@@ -70,4 +64,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default OfficialCreation
+export default Create;
