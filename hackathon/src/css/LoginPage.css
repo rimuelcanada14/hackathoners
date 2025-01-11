@@ -1,3 +1,10 @@
+.login-page {
+    margin: 0;
+    display: flex;
+    background-color: #FCFAF4;
+    justify-content: center;
+    align-items: center;
+}
 .login-bg {
     position: fixed;
     bottom: 0;
@@ -12,15 +19,23 @@
     object-fit: cover;
 }
 .login-container {
-    flex-shrink: 0;
+    position: absolute; /* Position the container relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the container */
     border-radius: 15px;
     background: #FFF;
     box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.09);
-    justify-content: center;
     display: flex;
-    position: relative;
-    z-index: 1;
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure responsiveness */
+    max-width: 400px; /* Limit the width */
+    box-sizing: border-box; /* Include padding in width/height */
+    z-index: 1; /* Ensure it appears above the background */
 }
+
 .login-content {
     padding: 2em;
 }
