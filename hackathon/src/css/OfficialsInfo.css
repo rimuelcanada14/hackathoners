@@ -1,0 +1,93 @@
+.officials-page {
+    display: flex;
+    min-width: 100%;
+    margin:0;
+}
+.official-layout {
+    display: flex;
+    flex-direction: row;
+    background-color: #FCFAF4;
+    height: 100vh; /* Ensures the layout takes up full height */
+    min-width: 100%;    
+    
+}
+
+.officials-details {
+    flex-grow: 1; /* Ensures it expands to fill the remaining space */
+    min-width: 100vw; /* Makes sure it takes up the full width */
+    padding: 20px;
+ }
+
+.profile-title{
+    color: #FDBC39;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+
+.backbtn{
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: #A3A3A3;
+}
+
+.backbtn .h4{
+    margin: 0;
+    font-weight: 400;
+    color: #A3A3A3;
+}
+
+.officials-info {
+    max-width: 80%; /* Ensures it doesn't exceed 100% of its parent */
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.02);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+}
+.officials-reports {
+    display: flex;
+    flex-direction: row;
+    min-width: 100vw;
+    gap: 2em;
+    margin-top: 1em;
+}
+.officials-recommended{
+    width: 25.45%; /* Ensures it doesn't exceed 100% of its parent */
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.02);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+}
+.option {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    color: #000; /* Default color */
+  }
+  
+  .option.selected {
+    text-decoration: underline;
+    color: #FDBC39; /* Highlighted color for selected option */
+  }
+  
+  .option:hover {
+    color: #FDBC39; /* Optional: Highlight on hover */
+  }
+.officials-posts {
+    display: flex;
+    flex-direction: row;
+}
