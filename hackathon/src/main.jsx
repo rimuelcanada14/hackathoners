@@ -1,3 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -14,10 +17,13 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={
+          <HomePage />
+        } />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/landing" element={<LandingPage />} />
+
         <Route path="/creation" element={< Creation />} />
         <Route path="/postpage" element={< PostPage />} />
         <Route path="/admindashboard" element={< AdminDashboard />} />
