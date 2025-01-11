@@ -17,7 +17,7 @@ const Signup = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-
+      console.log(user)
       if (user) {
         const currentTimeStamp = Date.now();
 
