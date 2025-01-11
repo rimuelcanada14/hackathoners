@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { getDatabase, ref, set,push } from "firebase/database";
+import React, { useState,useEffect } from 'react';
+import { getDatabase, ref, set,push,get } from "firebase/database";
 
 const PostPage = () => {
-  const [officials, setOfficials] = useState(["Official1", "Official2", "Official3", "Official4", "Official5"]);
+  const [officials, setOfficials] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [images, setImages] = useState([]);
@@ -61,7 +61,28 @@ const PostPage = () => {
   const handleImageRemove = (index) => {
     setImages(images.filter((_, i) => i !== index));
   };
+  useEffect(() => {
+    // Fetch officials' data from Firebase
+    const fetchOfficials = async () => {
+      try {
+        const officialsRef = ref(db, 'officials/'); // Reference to the "officials" node
+        const snapshot = await get(officialsRef); // Get the data
+        if (snapshot.exists()) {
+          // If data exists, map it to an array of official names
+          const officialsData = Object.values(snapshot.val()).map((official) => official.Name);
+          console.log(officialsData)
+          setOfficials(officialsData); // Update state with official names
+        } else {
+          setError('No officials found.');
+        }
+      } catch (err) {
+        setError('Failed to fetch officials.');
+        console.error(err);
+      }
+    };
 
+    fetchOfficials();
+  }, []);
   return (
     <div>
       <h2>PostPage</h2>
