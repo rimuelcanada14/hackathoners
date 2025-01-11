@@ -6,6 +6,8 @@ import LoginPage from './Pages/LoginPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
+import OfficialCreation from '../admin/officialCreation.jsx'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
@@ -14,7 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/landing" element={<LandingPage />} />
-
+        <Route path="/creation" element={< OfficialCreation />} />
       </Routes>
     </Router>
   </StrictMode>,
