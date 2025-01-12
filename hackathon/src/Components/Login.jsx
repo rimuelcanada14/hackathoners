@@ -91,9 +91,9 @@ const Login = () => {
           </div>
         </div>
       </div>
-
+    </body>
     </>
   )
 }
 
-export default Login
+export default Login;

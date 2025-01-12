@@ -162,7 +162,7 @@ const PostPage = () => {
         )}
 
         {/* Radio buttons for status */}
-        {/* <div> 
+        <div> 
           <label>
             <input
               type="radio"
@@ -183,7 +183,7 @@ const PostPage = () => {
             />
             Report
           </label>
-        </div> */}
+        </div>
 
         {/* Submit Button */}
         <button type='submit' className = "post-btn">Post</button>
