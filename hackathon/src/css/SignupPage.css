@@ -12,6 +12,7 @@
     object-fit: cover;
 }
 .signup-container {
+
     position: absolute; /* Position the container relative to the viewport */
     top: 50%;
     left: 50%;
@@ -27,6 +28,7 @@
     max-width: 400px; /* Limit the width */
     box-sizing: border-box; /* Include padding in width/height */
     z-index: 1; /* Ensure it appears above the background */
+
 }
 .signup-content {
     padding: 2em;
@@ -36,6 +38,7 @@
     font-family: Poppins;
     text-align: center;
     font-weight: 550;
+    font-size: 46px;
 }
 .signup-form {
     display: flex;
@@ -53,7 +56,7 @@
 .signup-form input {
     margin-bottom: 15px;
     padding: 10px;
-    width: 95%; 
+    width: 100%; 
     font-family: Poppins;
     border-radius: 10px;
     border: 0.5px solid #ADADAD;
@@ -96,5 +99,10 @@
 .signup-error {
     text-align: center;
     color: red;
+    margin-top: -.5em;
+}
+.signup-success {
+    text-align: center;
+    color: green;
     margin-top: -.5em;
 }

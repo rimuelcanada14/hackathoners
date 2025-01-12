@@ -1,4 +1,9 @@
 .login-page {
+    margin: 0;
+    display: flex;
+    background-color: #FCFAF4;
+    justify-content: center;
+    align-items: center;
 
 }
 .login-bg {
@@ -31,6 +36,7 @@
     box-sizing: border-box; /* Include padding in width/height */
     z-index: 1; /* Ensure it appears above the background */
 }
+
 .login-content {
     padding: 2em;
 }
@@ -55,7 +61,7 @@
 .login-form input {
     margin-bottom: 15px;
     padding: 10px;
-    width: 95%; 
+    width: 100%; 
     font-family: Poppins;
     border-radius: 10px;
     background-color: #ffffff;

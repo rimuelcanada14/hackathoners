@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getDatabase, ref, get, onValue } from 'firebase/database';
+
 import Col from 'react-bootstrap/Col';
 import user from './../src/assets/profileavatar.png'
 import './../src/css/Officials.css'
-
 
 
 const DashboardAdmin = () => {
@@ -18,6 +18,7 @@ const DashboardAdmin = () => {
 
   const fetchPosts = () => {
     const postRef = ref(db, 'UserPosts/');
+
     // Using onValue to listen to changes in the "UserPosts" node
     const unsubscribePosts = onValue(postRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -27,11 +28,9 @@ const DashboardAdmin = () => {
       }
     });
 
-    // Cleanup the listener when the component unmounts
     return () => unsubscribePosts();
   };
 
-  // Fetch and listen to officials in real-time
   const fetchOfficials = () => {
     const officialsRef = ref(db, 'officials/');
     
@@ -43,11 +42,12 @@ const DashboardAdmin = () => {
           officialsData.push({ id: childSnapshot.key, ...data });
         });
         setOfficials(officialsData); // Update officials with the latest data
+
       } else {
         setError('No officials found.');
       }
     });
-  
+
     // Return the unsubscribe function to be called in the cleanup
     return unsubscribeOfficials;
   };
@@ -55,11 +55,9 @@ const DashboardAdmin = () => {
   
 
   useEffect(() => {
-    // Start listening for updates on posts and officials
     const cleanupPosts = fetchPosts();
     const cleanupOfficials = fetchOfficials();
 
-    // Cleanup listeners when component unmounts
     return () => {
       cleanupPosts();
       cleanupOfficials();
@@ -78,10 +76,10 @@ const DashboardAdmin = () => {
 
       {error && <p>{error}</p>}
 
-      {/* Render officials data */}
       <div>
         <div className='officials-grid'>
         {officials.length > 0 ? (
+
   officials.map((official, index) => (
     <div className="officials-box" key={official.id} onClick={() => handleOfficialClick(official.id, official.Name)}>
     <img src={user} className="official-avatar" alt="Official Avatar" />
@@ -149,10 +147,14 @@ const DashboardAdmin = () => {
               <Bar dataKey="commend" fill="#82ca9d" />
             </BarChart>
           </ResponsiveContainer>
+
         ) : (
           <p>Loading officials...</p>
         )}
       </div>
+
+      <div>
+        <h2>Posts</h2>
 
       <div className="section">
         <h2 className="section-title">Posts Overview</h2>

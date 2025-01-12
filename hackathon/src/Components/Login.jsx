@@ -51,6 +51,8 @@ const Login = () => {
 
   return (
     <>
+    <body className="login-page">
+
       <div className="login-bg">
         <img src="./img/waves.png" alt="Background" />
       </div>
@@ -59,6 +61,7 @@ const Login = () => {
           <div className="login-logo">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/logo.png" alt="Background" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
+
           <div className="login-form">
             {message && <p>{message}</p>}
             <form onSubmit={handleLogin}>
@@ -88,6 +91,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
     </>
   )
 }
