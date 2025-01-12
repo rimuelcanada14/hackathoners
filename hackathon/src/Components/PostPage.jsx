@@ -85,11 +85,15 @@ const PostPage = () => {
   }, []);
   return (
     <div>
-      <h2>PostPage</h2>
+      <div className="post-header">
+        <img src = "../img/vector.png" alt = "vector"></img>
+        <h2 className = 'text-block username'>GetUserName</h2>
+      </div>
+      
       {error && <p>{error}</p>}
       <form onSubmit={handlePostSubmit}>
         {/* Dropdown for selecting official */}
-        <select
+        {/* <select
           name="officials"
           value={officerConcern}
           onChange={(e) => setOfficerConcern(e.target.value)}
@@ -100,7 +104,7 @@ const PostPage = () => {
               {official}
             </option>
           ))}
-        </select>
+        </select> */}
 
         {/* Title input */}
         <input
@@ -108,6 +112,7 @@ const PostPage = () => {
           value={title}
           placeholder="Enter Post Title"
           onChange={(e) => setTitle(e.target.value)}
+          id = "title"
         />
 
         {/* Content textarea */}
@@ -118,6 +123,7 @@ const PostPage = () => {
           value={content}
           placeholder="Enter Post Content"
           onChange={(e) => setContent(e.target.value)}
+          id = "content"
         />
 
         {/* File input for images */}
@@ -127,29 +133,36 @@ const PostPage = () => {
           accept="image/*"
           multiple
           onChange={handleImageChange}
-          className="mb-2"
+          className="file-input"
+          style={{ display: 'none' }} 
         />
+        
+        <label htmlFor="images" className="file-upload">
+        <img src = "../img/imgicon.png" alt = "vector" className = "img-icon"></img>
+          Upload Images
+        </label>
 
         {/* Display selected images */}
         {images.length > 0 && (
-          <ul className="space-y-2">
+          <ul className="space-y-2 image-label">
             {images.map((image, index) => (
               <li key={index} className="flex items-center">
-                <span className="mr-2">{image.name}</span>
+                <span className="mr-2">{image.name}
                 <button
                   type="button"
                   onClick={() => handleImageRemove(index)}
-                  className="px-2 py-1 text-sm text-red-600 hover:text-red-800"
+                  className="px-2 py-1 text-sm text-red-600 hover:text-red-800 img-remove"
                 >
                   Remove
                 </button>
+                </span>
               </li>
             ))}
           </ul>
         )}
 
         {/* Radio buttons for status */}
-        <div>
+        {/* <div> 
           <label>
             <input
               type="radio"
@@ -170,10 +183,10 @@ const PostPage = () => {
             />
             Report
           </label>
-        </div>
+        </div> */}
 
         {/* Submit Button */}
-        <button type='submit'>Post</button>
+        <button type='submit' className = "post-btn">Post</button>
       </form>
     </div>
   );

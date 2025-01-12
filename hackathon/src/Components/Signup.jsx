@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router'
+import {useNavigate, Link} from 'react-router'
 import { auth, db } from '../Firebase.jsx';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
@@ -10,6 +10,7 @@ const Signup = () => {
   const [tagName,setTagName] = useState('')
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -28,6 +29,9 @@ const Signup = () => {
         });
 
         setMessage("User successfully created!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -48,9 +52,9 @@ const Signup = () => {
         <img src="./img/waves.png" alt="Background" />
       </div>
 
-      <div className="container-fluid signup-container">
+      <div className="container-fluid signup-container px-10">
         <div className="signup-content">
-          <h1 className="fw-bold fs-1 signup-title">&nbsp;&nbsp;&nbsp;REGISTER&nbsp;&nbsp;&nbsp;</h1>
+          <h1 className="fw-bold signup-title">&nbsp;&nbsp;&nbsp;REGISTER&nbsp;&nbsp;&nbsp;</h1>
           <div className = "signup-form">
           <form onSubmit={handleSignup}>
           <label>Email: </label>
@@ -74,7 +78,11 @@ const Signup = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {message && <p className = "signup-error">{message}</p>}
+            {message && (
+              <p className={message.includes("successfully created") ? "signup-success" : "signup-error"}>
+                {message}
+              </p>
+            )}
             <div className="signup-submit">
               <button type='submit'>SIGNUP</button>
             </div>
