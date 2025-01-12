@@ -1,8 +1,5 @@
-# React + Vite
+KURAPP is a web application for users to share their experience about corrupt governments and be able to vote those corrupt politicians while maintaining anonymity.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The framework that was used is React and the tool used for backend, authentication, database is Firebase. As well as deployment. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Some of the function within the web application like parts of the modal popup, and some of the crud function are fixed and helped us fix using ChatGPT. 
