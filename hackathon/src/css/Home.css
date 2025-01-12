@@ -1,0 +1,11 @@
+.home-title {
+    font-weight: 600;
+    color: #FDBC39;
+    font-size: 40px;
+    margin-right: 20px;
+    font-family: Poppins;
+}
+#searchBar {
+    font-size: 14px;
+    font-family: Poppins;
+}
