@@ -69,7 +69,7 @@ const DashboardAdmin = () => {
   }, []);
 
   const handleOfficialClick = (id, name) => {
-    navigate(`/adminofficialpage/${id}`, { state: { name } });
+    navigate(`/Adminofficial/${id}`, { state: { name } });
 };
 
   return (

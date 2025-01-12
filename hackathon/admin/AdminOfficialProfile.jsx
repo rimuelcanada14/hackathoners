@@ -123,7 +123,7 @@ const AdminOfficialsPage = () => {
                 <td>
                     <span
                         style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }}
-                        onClick={() => navigate(`/official/${official.id}`, { state: { official } })}
+                        onClick={() => navigate(`/Adminofficial/${official.id}`, { state: { official } })}
                     >
                         {official.Name}
                     </span>

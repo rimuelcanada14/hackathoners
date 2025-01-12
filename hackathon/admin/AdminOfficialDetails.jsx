@@ -1,71 +1,133 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { Button } from "react-bootstrap";
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { Table, Card } from "react-bootstrap";
 
-const OfficialDetails = () => {
-    const { id } = useParams();
-    const location = useLocation();
-    const official = location.state?.official; // Official data passed via navigation
-    const [posts, setPosts] = useState([]);
-    const [filteredPosts, setFilteredPosts] = useState([]);
+const OfficialDetail = () => {
+    const { id } = useParams(); // Use official ID from the route
+    const navigate = useNavigate();
+    const [official, setOfficial] = useState(null); // Official details
+    const [posts, setPosts] = useState([]); // All posts
+    const [filteredPosts, setFilteredPosts] = useState([]); // Posts for the specific official
+    const [selection, setSelection] = useState(''); // Selection state for "Reported" or "Commended"
 
     useEffect(() => {
         const db = getDatabase();
 
-        // Fetch posts related to the official
+        // Fetch official details
+        const officialRef = ref(db, `officials/${id}`);
+        onValue(officialRef, (snapshot) => {
+            if (snapshot.exists()) {
+                setOfficial(snapshot.val());
+            }
+        });
+
+        // Fetch all posts
         const postsRef = ref(db, 'UserPosts/');
         onValue(postsRef, (snapshot) => {
             if (snapshot.exists()) {
                 const allPosts = Object.values(snapshot.val());
-                const relatedPosts = allPosts.filter(post => post.officialConcern === official.Name);
                 setPosts(allPosts);
+
+                // Filter posts for the specific official
+                const relatedPosts = allPosts.filter(post => post.officialConcern === official?.Name);
                 setFilteredPosts(relatedPosts);
             }
         });
-    }, [official]);
+    }, [id, official?.Name]);
+
+    const handleBack = () => {
+        navigate('/admindashboard');
+    };
+
+    const handleSelectionChange = (status) => {
+        setSelection(status);
+
+        if (status) {
+            const filtered = posts.filter(post => post.officialConcern === official?.Name && post.status === status);
+            setFilteredPosts(filtered);
+        } else {
+            setFilteredPosts(posts.filter(post => post.officialConcern === official?.Name));
+        }
+    };
+
+    if (!official) {
+        return <p>Loading official details...</p>;
+    }
 
     return (
-        <div className="official-details">
-            <Card className="mb-4">
-                <Card.Body>
-                    <Card.Title>{official.Name}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{official.Position}</Card.Subtitle>
-                    <Card.Text>
-                        <strong>Commendations:</strong>{' '}
-                        {filteredPosts.filter(post => post.status === 'commend').length}
-                    </Card.Text>
-                    <Card.Text>
-                        <strong>Reports:</strong>{' '}
-                        {filteredPosts.filter(post => post.status === 'report').length}
-                    </Card.Text>
-                    <Card.Text>
-                        <strong>Total Posts:</strong> {filteredPosts.length}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+        <>
+            <body className="officials-page">
+                <div className='official-layout'>
+                    <div className='officials-details'>
+                        <h1 className='profile-title'>Profile</h1>
+                        <Button className="backbtn" variant="light" onClick={handleBack}>
+                            <FaArrowLeft className="me-2" /><span className="h4">Officials</span>
+                        </Button>
 
-            <h2>Posts</h2>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredPosts.map((post, index) => (
-                        <tr key={index}>
-                            <td>{post.title}</td>
-                            <td>{post.content}</td>
-                            <td>{post.status}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </div>
+                        <div className="officials-info">
+                            <h5 className="text-uppercase">Name: {official.Name}</h5>
+                            <p>Position: {official.Position}</p>
+                        </div>
+
+                        <div className="officials-reports">
+                            <div className="officials-recommended">
+                                Recommended<br />{
+                                    posts.filter(post => post.officialConcern === official.Name && post.status === 'commend').length
+                                }
+                            </div>
+                            <div className="officials-recommended">
+                                Reported<br />{
+                                    posts.filter(post => post.officialConcern === official.Name && post.status === 'report').length
+                                }
+                            </div>
+                            <div className="officials-recommended">
+                                Total Reports<br />{
+                                    posts.filter(post => post.officialConcern === official.Name).length
+                                }
+                            </div>
+                        </div>
+
+                        <div className="officials-posts">
+                            <div className="filter-options">
+                                <div
+                                    className={`option ${selection === 'report' ? 'selected' : ''}`}
+                                    onClick={() => handleSelectionChange('report')}>
+                                    Reported
+                                </div>
+                                <div
+                                    className={`option ${selection === 'commend' ? 'selected' : ''}`}
+                                    onClick={() => handleSelectionChange('commend')}>
+                                    Commended
+                                </div>
+                                <div
+                                    className={`option ${!selection ? 'selected' : ''}`}
+                                    onClick={() => handleSelectionChange('')}>
+                                    All
+                                </div>
+                            </div>
+
+                            <div className="posts-container">
+                                {filteredPosts.length > 0 ? (
+                                    filteredPosts.map((post, index) => (
+                                        <div key={index} className="post-card">
+                                            <h5>{post.title}</h5>
+                                            <p>{post.content}</p>
+                                            <small>Status: {post.status}</small>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No posts available for this selection.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </>
     );
 };
 
-export default OfficialDetails;
+export default OfficialDetail;
