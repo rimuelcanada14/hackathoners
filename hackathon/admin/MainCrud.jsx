@@ -16,7 +16,7 @@ const MainCrud = () => {
       const itemRef = ref(db, `officials/${id}`);
       await remove(itemRef);
       console.log("Item deleted successfully!");
-      console.log("Deleting item with ID:", id); // Add this to confirm the ID
+      console.log("Deleting item with ID:", id); 
 
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -25,7 +25,7 @@ const MainCrud = () => {
   };
   return (
     <div>
-      <h1>CRUD App with Firebase Realtime Database</h1>
+      <h1>Offical Creation Portal</h1>
       {editingItem ? (
         <Edit item={editingItem} onCancel={handleCancelEdit} />
       ) : (

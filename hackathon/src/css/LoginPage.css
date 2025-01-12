@@ -4,6 +4,7 @@
     background-color: #FCFAF4;
     justify-content: center;
     align-items: center;
+
 }
 .login-bg {
     position: fixed;
@@ -63,13 +64,14 @@
     width: 100%; 
     font-family: Poppins;
     border-radius: 10px;
+    background-color: #ffffff;
     border: 0.5px solid #ADADAD;
   }
   
 .login-form button {
     padding: 10px 20px;
     border-radius: 10px;
-    background: #FDBC39;
+    background-color: #FDBC39;
     color: white;
     border: none;
     cursor: pointer;

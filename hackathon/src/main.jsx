@@ -9,26 +9,36 @@ import LoginPage from './Pages/LoginPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
+import UserDashboard from './Pages/Officials.jsx'
 import Creation from '../admin/MainCrud.jsx'
-import AdminDashboard from '../admin/dashboard.jsx'
-import ProfileOfficer from '../admin/ProfileOfficial.jsx'; // Path to your ProfileOfficer component
+
+import OfficialDetail from './Pages/OfficialsInfo.jsx'
+import AdminDashboard from '../admin/AdminPage/AdminDashboard.jsx'
 
 import PostPage from './Components/PostPage.jsx'
+import AdminOfficialProfilePage from '../admin/AdminPage/AdminOfficialProfilePage.jsx'
+import AdminOfficialDetails from '../admin/AdminPage/AdminOfficialDetailsPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
-      <Route path="/" element={
+
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/homepage" element={
           <HomePage />
         } />
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/landing" element={<LandingPage />} />
 
         <Route path="/creation" element={< Creation />} />
         <Route path="/postpage" element={< PostPage />} />
-        <Route path="/admindashboard/" element={< AdminDashboard />} />
-        <Route path="/profileofficer/:officialName" element={<ProfileOfficer />} />
+
+        <Route path="/officials" element={< AdminDashboard />} />
+        <Route path="/official/:id" element={<OfficialDetail />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/adminofficialpage/" element={<AdminOfficialProfilePage />} />
+        <Route path="/official/:id" element={<AdminOfficialDetails />} />
+
 
 
       </Routes>
