@@ -66,9 +66,9 @@ const DashboardAdmin = () => {
     };
   }, []);
 
-  const handleOfficialClick = (id) => {
-    navigate(`/official/${id}`);
-  };
+  const handleOfficialClick = (id, name) => {
+    navigate(`/Adminofficial/${id}`, { state: { name } });
+};
 
   return (
     <div className='dashboard container-fluid'>
@@ -81,44 +81,30 @@ const DashboardAdmin = () => {
       {/* Render officials data */}
       <div>
         <div className='officials-grid'>
-          {officials.length > 0 ? (
-            officials.map((official, index) => (
-              <div className='officials-box' key={official.id}
-              onClick={() => handleOfficialClick(official.id)}
-              >
-                <img src={user} className='official-avatar '></img>
-                <p className='official-name'>{official.Name}</p>
-                <p className='official-position'>{official.Position}</p>
-                {/* Count the posts for the specific official */}
-                { console.log("Logging USERID", official.id)}
-                <div className='counts-container'>
-                  <div>
-                    <p className='total-count-text'>
-                      {
-                        posts.filter(post => post.officialConcern === official.Name && post.status === 'report').length
-                      }
-                    </p>
-                    <p className='reported-title'>
-                    Reported
-                    </p>
-                  </div>
-                  <div>
-                    <p className='total-count-text'>
-                      {
-                        posts.filter(post => post.officialConcern === official.Name && post.status === 'commend').length
-                      }
-                    </p>
-                    <p className='commended-title'>
-                    Commended
-                    </p>
-                  </div>
-                  
-                </div>
-                
-              </div>
-            ))
-          ) : (
-            <p>Loading officials...</p>
+        {officials.length > 0 ? (
+  officials.map((official, index) => (
+    <div className="officials-box" key={official.id} onClick={() => handleOfficialClick(official.id, official.Name)}>
+    <img src={user} className="official-avatar" alt="Official Avatar" />
+    <p className="official-name">{official.Name}</p>
+    <p className="official-position">{official.Position}</p>
+    <div className="counts-container">
+        <div>
+            <p className="total-count-text">
+                {posts.filter(post => post.officialConcern === official.Name && post.status === 'report').length}
+            </p>
+            <p className="reported-title">Reported</p>
+        </div>
+        <div>
+            <p className="total-count-text">
+                {posts.filter(post => post.officialConcern === official.Name && post.status === 'commend').length}
+            </p>
+            <p className="commended-title">Commended</p>
+        </div>
+    </div>
+</div>
+  ))
+) : (
+  <p>Loading officials...</p>
           )}
         </div>
         

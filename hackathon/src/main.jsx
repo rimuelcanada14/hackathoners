@@ -9,11 +9,13 @@ import LoginPage from './Pages/LoginPage.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import SignupPage from './Pages/SignupPage.jsx'
 import LandingPage from './Pages/Landing.jsx'
-import AdminDashboard from './Pages/Officials.jsx'
+import UserDashboard from './Pages/Officials.jsx'
 import Creation from '../admin/MainCrud.jsx'
 import OfficialDetail from './Pages/OfficialsInfo.jsx'
-
+import AdminDashboard from '../admin/AdminPage/AdminDashboard.jsx'
 import PostPage from './Components/PostPage.jsx'
+import AdminOfficialProfilePage from '../admin/AdminPage/AdminOfficialProfilePage.jsx'
+import AdminOfficialDetails from '../admin/AdminPage/AdminOfficialDetailsPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
@@ -30,6 +32,11 @@ createRoot(document.getElementById('root')).render(
         <Route path="/postpage" element={< PostPage />} />
         <Route path="/officials" element={< AdminDashboard />} />
         <Route path="/official/:id" element={<OfficialDetail />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/adminofficialpage/" element={<AdminOfficialProfilePage />} />
+        <Route path="/official/:id" element={<AdminOfficialDetails />} />
+
+
       </Routes>
     </Router>
   </StrictMode>,
