@@ -55,6 +55,13 @@
     color: #7F7F7F !important;
     display: block !important;
 }
+.sidebar-content-one a{
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #7F7F7F !important;
+    display: block !important;
+    margin-top: -10.5em;
+}
 
 .sidebar-content-footer{
     text-decoration: none !important;

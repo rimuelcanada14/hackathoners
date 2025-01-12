@@ -120,14 +120,7 @@ const AdminOfficialsPage = () => {
 
         return (
             <tr key={official.id}>
-                <td>
-                    <span
-                        style={{ color: "blue", cursor: "pointer", textDecoration: "underline" }}
-                        onClick={() => navigate(`/Adminofficial/${official.id}`, { state: { official } })}
-                    >
-                        {official.Name}
-                    </span>
-                </td>
+                <td>{official.Name}</td>
                 <td>{official.Position}</td>
                 <td>{commendations}</td>
                 <td>{reports}</td>

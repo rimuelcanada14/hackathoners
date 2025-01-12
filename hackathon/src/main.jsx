@@ -33,8 +33,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/officials" element={< AdminDashboard />} />
         <Route path="/official/:id" element={<OfficialDetail />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
-        <Route path="/adminofficialpage/:id" element={<AdminOfficialProfilePage />} />
-        <Route path="/Adminofficial/:id" element={<AdminOfficialDetails />} />
+        <Route path="/adminofficialpage/" element={<AdminOfficialProfilePage />} />
+        <Route path="/official/:id" element={<AdminOfficialDetails />} />
 
 
       </Routes>
