@@ -18,7 +18,6 @@ const OfficialDetail = () => {
     const [official, setOfficial] = useState(null); // Official details
     const [posts, setPosts] = useState([]); // All posts
     const [filteredPosts, setFilteredPosts] = useState([]); // Posts for the specific official
-    const [selection, setSelection] = useState(''); // Selection state for "Reported" or "Commended"
 
     useEffect(() => {
         const db = getDatabase();
@@ -77,7 +76,7 @@ const OfficialDetail = () => {
     
 
     const handleBack = () => {
-        navigate('/officials');
+        navigate('/homepage');
     };
     const [selection, setSelection] = useState('commended');
 

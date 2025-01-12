@@ -1,11 +1,4 @@
-.login-page {
-    margin: 0;
-    display: flex;
-    background-color: #FCFAF4;
-    justify-content: center;
-    align-items: center;
 
-}
 .login-bg {
     position: fixed;
     bottom: 0;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Table, Modal, Form } from "react-bootstrap";
 import { getDatabase, ref, onValue, set, remove } from 'firebase/database';
+import './AdminOfficialPage.css';
 
 const AdminOfficialsPage = () => {
     const navigate = useNavigate();
@@ -84,23 +85,24 @@ const AdminOfficialsPage = () => {
     return (
         <div className="admin-officials-page">
             <div className="content">
-                <h1>Admin Officials Management</h1>
+                <h1 className='admin-title'>Admin Officials Management</h1>
 
                 <div className="header">
-                    <Button variant="primary" onClick={() => handleShowModal(null)}>Add Official</Button>
                     <input
                         type="text"
                         placeholder="Search by name..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         className="search-bar"
+                        id='searchBar'
                     />
                 </div>
+                <Button className= "add-btn"variant="primary" onClick={() => handleShowModal(null)}>Add Official</Button>
 
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th className = "table-border">Name</th>
                             <th>Position</th>
                             <th>Commendations</th>
                             <th>Reports</th>

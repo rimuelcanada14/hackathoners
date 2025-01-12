@@ -1,0 +1,33 @@
+.admin-officials-page {
+    display: flex;
+    margin:0;
+    padding: 1em;
+    
+}
+.admin-title{
+    color: #FDBC39;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+#searchBar {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 78vw; 
+    font-family: Poppins;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 0.5px solid #ADADAD;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+.add-btn {
+    margin-bottom: 1em;
+}
+.table-border {
+    border-top-left-radius: 25px;
+}

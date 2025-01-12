@@ -45,14 +45,14 @@ const Navbar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/officials" className="activeClicked">
+            <NavLink to="/officials" className="activeClicked">
                 <CDBSidebarMenuItem icon="user">Officials</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
         <CDBSidebarContent className="sidebar-content-one">
           <CDBSidebarMenu>
-            <NavLink exact to="/adminofficialpage" className="activeClicked">
+            <NavLink to="/adminofficialpage" className="activeClicked">
                 <CDBSidebarMenuItem icon="file-alt">Reports</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
