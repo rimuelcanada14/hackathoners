@@ -7,8 +7,6 @@ import user from './../src/assets/profileavatar.png'
 import './../src/css/Officials.css'
 
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
 
 const DashboardAdmin = () => {
   const [error, setError] = useState(null);

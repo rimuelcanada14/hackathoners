@@ -29,6 +29,7 @@ body {
   min-width: 100%;
   min-height: 100vh;
   background-color: #FCFAF4;
+  overflow: hidden;
 }
 
 h1 {

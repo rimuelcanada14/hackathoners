@@ -32,7 +32,7 @@ const Login = () => {
         if (userType === 'user') {
           navigate('/homepage')  // Redirect to User Home Page
         } else if (userType === 'admin') {
-          navigate('/admindashboard')  // Redirect to Admin Home Page
+          navigate('/officials')  // Redirect to Admin Home Page
         } else {
           setMessage('Invalid user type.')
         }
