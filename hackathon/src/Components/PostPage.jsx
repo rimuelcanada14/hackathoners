@@ -1,13 +1,12 @@
-import React, { useState,useEffect } from 'react';
-import { getDatabase, ref, set,push,get } from "firebase/database";
+import React, { useState, useEffect } from 'react';
+import { getDatabase, ref, set, push, get } from "firebase/database";
 
-const PostPage = () => {
+const PostPage = ({ status }) => {
   const [officials, setOfficials] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [images, setImages] = useState([]);
   const [officerConcern, setOfficerConcern] = useState('');
-  const [status, setStatus] = useState('');
   const [error, setError] = useState('');
   const db = getDatabase();
 
@@ -26,14 +25,13 @@ const PostPage = () => {
         officialConcern: officerConcern,
         content: content,
         images: images,
-        status: status,
+        status: status, // Using the status prop here
       });
       console.log("Post submitted successfully!");
-      setTitle('')
-      setOfficerConcern('')
-      setContent('')
-      setImages([])
-      setStatus('')
+      setTitle('');
+      setOfficerConcern('');
+      setContent('');
+      setImages([]);
     } catch (error) {
       console.log(error);
       setError("An error occurred while submitting the post.");
@@ -61,6 +59,7 @@ const PostPage = () => {
   const handleImageRemove = (index) => {
     setImages(images.filter((_, i) => i !== index));
   };
+
   useEffect(() => {
     // Fetch officials' data from Firebase
     const fetchOfficials = async () => {
@@ -70,7 +69,6 @@ const PostPage = () => {
         if (snapshot.exists()) {
           // If data exists, map it to an array of official names
           const officialsData = Object.values(snapshot.val()).map((official) => official.Name);
-          console.log(officialsData)
           setOfficials(officialsData); // Update state with official names
         } else {
           setError('No officials found.');
@@ -83,17 +81,18 @@ const PostPage = () => {
 
     fetchOfficials();
   }, []);
+
   return (
     <div>
       <div className="post-header">
-        <img src = "../img/vector.png" alt = "vector"></img>
-        <h2 className = 'text-block username'>GetUserName</h2>
+        <img src="../img/vector.png" alt="vector" />
+        <h2 className='text-block username'>{UserInfo}</h2>
       </div>
       
       {error && <p>{error}</p>}
       <form onSubmit={handlePostSubmit}>
         {/* Dropdown for selecting official */}
-        {/* <select
+        <select
           name="officials"
           value={officerConcern}
           onChange={(e) => setOfficerConcern(e.target.value)}
@@ -104,7 +103,7 @@ const PostPage = () => {
               {official}
             </option>
           ))}
-        </select> */}
+        </select>
 
         {/* Title input */}
         <input
@@ -112,7 +111,7 @@ const PostPage = () => {
           value={title}
           placeholder="Enter Post Title"
           onChange={(e) => setTitle(e.target.value)}
-          id = "title"
+          id="title"
         />
 
         {/* Content textarea */}
@@ -123,7 +122,7 @@ const PostPage = () => {
           value={content}
           placeholder="Enter Post Content"
           onChange={(e) => setContent(e.target.value)}
-          id = "content"
+          id="content"
         />
 
         {/* File input for images */}
@@ -138,7 +137,7 @@ const PostPage = () => {
         />
         
         <label htmlFor="images" className="file-upload">
-        <img src = "../img/imgicon.png" alt = "vector" className = "img-icon"></img>
+          <img src="../img/imgicon.png" alt="vector" className="img-icon" />
           Upload Images
         </label>
 
@@ -162,7 +161,7 @@ const PostPage = () => {
         )}
 
         {/* Radio buttons for status */}
-        {/* <div> 
+        <div> 
           <label>
             <input
               type="radio"
@@ -183,10 +182,10 @@ const PostPage = () => {
             />
             Report
           </label>
-        </div> */}
+        </div>
 
         {/* Submit Button */}
-        <button type='submit' className = "post-btn">Post</button>
+        <button type='submit' className="post-btn">Post</button>
       </form>
     </div>
   );

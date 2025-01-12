@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 
 import { getDatabase, ref, get, onValue } from 'firebase/database';
 import user from './../assets/profileavatar.png'
-
+import Landing from '../Components/landing'
 
 const OfficialDetail = () => {
     const { id } = useParams(); // Use official ID from the route
@@ -99,8 +99,7 @@ const OfficialDetail = () => {
 
     return (
         <>
-
-      
+  <Landing />      
           <body className="officials-page">
             <div className='official-layout'>
               <Navbar />
